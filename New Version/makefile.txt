@@ -1,0 +1,12 @@
+CC = gcc
+CFLAGS = -Iinclude `pkg-config --cflags gtk+-3.0`
+LIBS = `pkg-config --libs gtk+-3.0`
+
+SRC = src/main.c src/ui.c src/backup.c
+OUT = SmartBackupUtility
+
+all:
+	$(CC) $(SRC) -o $(OUT) $(CFLAGS) $(LIBS)
+
+clean:
+	rm -f $(OUT)
