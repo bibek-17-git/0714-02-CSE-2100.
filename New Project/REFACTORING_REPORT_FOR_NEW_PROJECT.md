@@ -145,18 +145,30 @@ This section records the AI prompts used to transform the Smart Backup Utility a
 **Proposed structure adopted:**
 
 ```
-file-backup-utility/
+smart-backup-utility/
 ├── src/
-│   ├── main/        → entry point only
-│   ├── core/        → business logic (settings, fileops, backup)
-│   ├── rendering/   → GTK window and dialogs
-│   └── utils/       → shared helpers
-├── include/         → all header files
-├── docs/
-├── assets/
-├── build/
-├── Makefile
-└── README.md
+│   ├── main/
+│   │   └── main.c              # Entry point ONLY (20 lines)
+│   ├── core/
+│   │   ├── settings.c          # Config read/write — backup_config.txt
+│   │   ├── backup.c            # Backup engine, timer, button callback
+│   │   └── fileops.c           # File queue: add/remove/clear
+│   ├── rendering/
+│   │   └── window.c            # GTK window, all dialogs, callbacks, widget globals
+│   └── utils/
+│       └── utils.c             # UI_UpdateStatus, UI_ShowNotification
+├── include/
+│   ├── settings.h              # BackupSettings struct, constants, prototypes
+│   ├── window.h                # GTK global widget externs + UI_CreateMainWindow prototype
+│   ├── backup.h                # Backup_Perform, auto_backup_timer prototypes
+│   ├── fileops.h               # FileQueue_* prototypes
+│   └── utils.h                 # UI_UpdateStatus, UI_ShowNotification prototypes
+├── docs/                       # Documentation (this guide, README)
+├── assets/                     # Icons, resources
+├── build/                      # Compiled objects (auto-generated, gitignored)
+├── Makefile                    # Auto-discovery build
+├── .gitignore                  # Excludes build/, *.exe, *.o, config/log files
+└── README.md                   # Project documentation
 ```
 
 ### Prompt 3.2 — Header File Strategy
