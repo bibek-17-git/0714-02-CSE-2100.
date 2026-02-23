@@ -1,0 +1,5 @@
+build/
+*.exe
+*.o
+backup_config.txt
+backup_log.txt
