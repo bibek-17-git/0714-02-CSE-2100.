@@ -1,12 +1,12 @@
-# tonmoyislamtogor07 — 0714-02-CSE-2100
+# 0714-02-CSE-2100
 Course Code : 0714 02 CSE 2100 || Course Title : Advanced Programming Laboratory
 
 
-# Smart Backup Utility: Refactoring Documentation (Previous_Project → Updated_Project)
+# File Backup Utility: Refactoring Documentation (Previous_Project → Updated_Project)
 
 **Course:** Advanced Programming Lab  
-**Project:** Smart Backup Utility  
-**Date:** February 2026
+**Project:** File Backup Utility  
+**Date:** 24 February 2026
 
 ---
 
@@ -50,7 +50,7 @@ This section records the AI prompts used to transform the Smart Backup Utility a
 
 ### Prompt 1.1 — Initial Codebase Audit
 
-> "Analyze this C Smart Backup Utility application. Read the source file (main.c). For each function, list its purpose, parameters, and dependencies. Identify: (1) The overall purpose of each logical block, (2) Dependencies between functions, (3) GUI framework usage (GTK+ 3.0), (4) File I/O and system calls used, (5) Naming conventions used, (6) SOLID principle violations, (7) Missing design patterns, and (8) Code smells. Provide a comprehensive architecture summary showing how the GTK+ 3.0 GUI interacts with the file system and backup logic."
+> "Analyze this C File Backup Utility application. Read the source file (main.c). For each function, list its purpose, parameters, and dependencies. Identify: (1) The overall purpose of each logical block, (2) Dependencies between functions, (3) GUI framework usage (GTK+ 3.0), (4) File I/O and system calls used, (5) Naming conventions used, (6) SOLID principle violations, (7) Missing design patterns, and (8) Code smells. Provide a comprehensive architecture summary showing how the GTK+ 3.0 GUI interacts with the file system and backup logic."
 
 **Purpose:** Understanding the complete system architecture before making any changes. We needed to map out every function, identify the boundary between GUI and business logic, and understand how file operations are performed.
 
@@ -126,7 +126,7 @@ This section records the AI prompts used to transform the Smart Backup Utility a
 
 ### Prompt 2.3 — Global Variable Reduction Strategy
 
-> "The Smart Backup Utility uses 8 global GTK widget pointers (window, progress_bar, status_label, items_list, treeview, dest_entry_global, backup_running, timer_id). Propose a strategy to reduce global state while maintaining GTK+ 3.0 compatibility. Should we use a context struct, keep them as module-level globals with extern declarations, or pass them as parameters? Consider GTK signal callback signatures which only allow (GtkWidget*, gpointer)."
+> "The File Backup Utility uses 8 global GTK widget pointers (window, progress_bar, status_label, items_list, treeview, dest_entry_global, backup_running, timer_id). Propose a strategy to reduce global state while maintaining GTK+ 3.0 compatibility. Should we use a context struct, keep them as module-level globals with extern declarations, or pass them as parameters? Consider GTK signal callback signatures which only allow (GtkWidget*, gpointer)."
 
 **Purpose:** To understand the trade-offs of global GTK state in a C application without GObject's property system.
 
@@ -138,14 +138,14 @@ This section records the AI prompts used to transform the Smart Backup Utility a
 
 ### Prompt 3.1 — Professional Folder Layout
 
-> "My Smart Backup Utility currently has everything in main.c. Propose a professional folder structure following software engineering best practices. The project uses GTK+ 3.0 for GUI, standard C file I/O for backup copying, and key=value text files for config. Group files by responsibility (core logic, rendering, utilities). Show the complete tree with a one-line description for each file."
+> "My File Backup Utility currently has everything in main.c. Propose a professional folder structure following software engineering best practices. The project uses GTK+ 3.0 for GUI, standard C file I/O for backup copying, and key=value text files for config. Group files by responsibility (core logic, rendering, utilities). Show the complete tree with a one-line description for each file."
 
 **Purpose:** To establish a target structure before splitting the monolithic file.
 
 **Proposed structure adopted:**
 
 ```
-smart-backup-utility/
+file-backup-utility/
 ├── src/
 │   ├── main/        → entry point only
 │   ├── core/        → business logic (settings, fileops, backup)
